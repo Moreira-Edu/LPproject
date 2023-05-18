@@ -7,6 +7,7 @@ public class Metodos {
 	public void pagar(Banco banco, double valorCompra, int posicao) throws Excecoes{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Escolha 1 para pagar no debito ou 2 para pagar com credito.");
+		try{
 		int escolha = sc.nextInt();
 			if(escolha == 1) {
 				double saldo = banco.getContas().get(posicao).getSaldo();
@@ -26,7 +27,10 @@ public class Metodos {
 				}
 			}else {
 				this.pagar(banco, valorCompra, posicao);
+			} catch (IllegalArgumentException  e){
+				throw new Excecoes("Valor inválido");
 			}
+		}
 	}
 	
 	
